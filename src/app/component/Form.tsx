@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useForm, ValidationError } from "@formspree/react";
+// import { useForm, ValidationError } from "@formspree/react";
 import Popup from "./Popup";
 
 function Forms() {
@@ -20,26 +20,45 @@ function Forms() {
 
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleClick = () => {
-    setText("");
-    setEmail("");
-    setText("");
-    setShowPopup(true);
+  const handleClick = async () => {
+    try {
+      const response = await fetch("https://formspree.io/f/xknlkqww", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          textarea: text,
+        }),
+      });
+      console.log(response);
+      setName("");
+      setEmail("");
+      setText("");
+      setShowPopup(true);
+    } catch (error) {
+      // Handle network errors or other exceptions
+    }
   };
-  const [state, handleSubmit] = useForm("myyqldqv");
+  // const [state, handleSubmit] = useForm("myyqldqv");
 
   return (
     <div className="text-center flex flex-col items-center">
       {showPopup && <Popup onClose={() => setShowPopup(false)} />}
 
-      <h1 className="text-2xl text-orange-600 text-center">Get in Touch</h1>
+      <h1 className="text-2xl text-orange-600 text-center" id="contact">
+        Get in Touch
+      </h1>
       <hr className=" w-40 ml-auto mr-auto mt-3  border-orange-600" />
       <h2 className="mt-4 text-gray-400">
         Drop us a line about your project and one of our experts will be in
         touch with you
       </h2>
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
+
         className="mt-10 flex flex-col justify-center items-center  border border-gray-500 w-full md:w-1/2 rounded-lg px-10"
       >
         {/* Name */}
@@ -129,7 +148,10 @@ function Forms() {
           className={`bg-white disabled:bg-gray-400 text-gray-700 p-2 w-full md:w-1/2 rounded-full font-bold m-10 }`}
           disabled={(!email || !name) && true}
           type="submit"
-          onClick={handleClick}
+          onClick={(e) => {
+            e.preventDefault();
+            handleClick();
+          }}
         >
           Submit
         </button>

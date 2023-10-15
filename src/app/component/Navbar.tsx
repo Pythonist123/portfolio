@@ -38,37 +38,50 @@ function Navbar() {
         <div className="hidden md:block mr-10">
           <Link
             className="hover:bg-gray-600 px-10     p-2  hover:font-bold"
-            href={"#"}
+            href={"#home"}
           >
             Home
           </Link>
           <Link
             className="hover:bg-gray-600 px-10     p-2  hover:font-bold"
-            href={"#"}
+            href={"#about"}
           >
             About
           </Link>
           <Link
             className="hover:bg-gray-600 px-10    p-2  hover:font-bold"
-            href={"#"}
+            href={"#contact"}
           >
             Contact
           </Link>
         </div>
       </div>
 
+      {/* Mobile */}
       <div
         className={` w-full h-screen pl-4 md:hidden ${
           !toggle && "hidden"
         }  flex flex-col bg-black mt-6 px-2`}
       >
-        <Link className="w-fit   py-3 hover:font-bold" href={"#"}>
+        <Link
+          className="w-fit   py-3 hover:font-bold"
+          href={"#home"}
+          onClick={() => setToggle(false)}
+        >
           Home
         </Link>
-        <Link className="w-fit   py-3 hover:font-bold" href={"#"}>
+        <Link
+          className="w-fit   py-3 hover:font-bold"
+          href={"#about"}
+          onClick={() => setToggle(false)}
+        >
           About
         </Link>
-        <Link className="w-fit  py-3 hover:font-bold" href={"#"}>
+        <Link
+          className="w-fit  py-3 hover:font-bold"
+          href={"#contact"}
+          onClick={() => setToggle(false)}
+        >
           Contact
         </Link>
       </div>

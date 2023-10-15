@@ -67,7 +67,10 @@ export default function Home() {
         </div>
       </section>
 
-      <About />
+      <div>
+        <About />
+      </div>
+
       <div className="pt-40">
         <Attributes />
       </div>

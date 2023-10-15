@@ -6,7 +6,7 @@ function About() {
   return (
     <>
       <div className=" md:flex md:flex-col lg:flex-row md:items-center lg:items-start pl-2 lg:px-60">
-        <div className="lg:w-1/2 md:w-2/3">
+        <div className="lg:w-1/2 md:w-2/3" id="about">
           <Image src={aboutus} alt="aboutus" />
         </div>
         <div className="lg:w-1/2 md:w-2/3 lg:pl-10">
