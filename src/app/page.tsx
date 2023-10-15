@@ -5,20 +5,30 @@ import webdev from "../app/image/web_dev.png";
 import Navbar from "./component/Navbar";
 import { animated, useSpring, SpringValue } from "@react-spring/web";
 import About from "./component/About";
+import Form from "./component/Form";
 import Attributes from "./component/Attributes";
+import { useEffect, useState } from "react";
+import Technologies from "./component/Technologies";
+import Footer from "./component/Footer";
 
 export default function Home() {
+  const [spring, setSpring] = useState({});
   interface AnimatedStyleProps {
     from: number;
     to: number;
   }
 
-  const spring = useSpring<AnimatedStyleProps>({
+  const ispring = useSpring<AnimatedStyleProps>({
     from: { x: -400 },
     to: { x: 0 },
   });
+
+  useEffect(() => {
+    setSpring(ispring);
+  }, []);
+
   return (
-    <div className={`h-fullw-full  text-white  `}>
+    <div className={`h-full w-full  text-white  px-4`}>
       <section className="mt-32 mb-20 h-screen pl-5 pr-20 md:py-36 lg:pt-48 lg:pl-64 flex">
         <div className="">
           <animated.h2
@@ -60,6 +70,13 @@ export default function Home() {
       <About />
       <div className="pt-40">
         <Attributes />
+      </div>
+
+      <div className="pt-40">
+        <Technologies />
+      </div>
+      <div className="pt-40 pb-40">
+        <Form />
       </div>
     </div>
   );
